@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gestorcitas2.HelloController">
+   <children>
+      <TextField fx:id="txtnom" layoutX="100.0" layoutY="157.0" prefHeight="25.0" prefWidth="411.0" />
+      <TextField fx:id="txtpss" layoutX="100.0" layoutY="246.0" prefHeight="25.0" prefWidth="366.0" />
+      <Text layoutX="14.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduce tu nombre:" wrappingWidth="76.021484375" />
+      <Text layoutX="14.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduce la contraseña:" wrappingWidth="76.021484375" />
+      <Text layoutX="143.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicia Sesión:" wrappingWidth="325.13671875">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Text>
+      <Button fx:id="bttlog" layoutX="257.0" layoutY="306.0" mnemonicParsing="false" onAction="#OnClick" text="LOGIN" />
+   </children>
+   <padding>
+      <Insets top="10.0" />
+   </padding>
+</AnchorPane>
