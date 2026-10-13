@@ -2,23 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gestorcitas2.HelloController">
    <children>
-      <TextField fx:id="txtnom" layoutX="100.0" layoutY="157.0" prefHeight="25.0" prefWidth="411.0" />
-      <TextField fx:id="txtpss" layoutX="100.0" layoutY="246.0" prefHeight="25.0" prefWidth="366.0" />
-      <Text layoutX="14.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduce tu nombre:" wrappingWidth="76.021484375" />
-      <Text layoutX="14.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduce la contraseña:" wrappingWidth="76.021484375" />
-      <Text layoutX="143.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicia Sesión:" wrappingWidth="325.13671875">
-         <font>
-            <Font size="42.0" />
-         </font>
-      </Text>
-      <Button fx:id="bttlog" layoutX="257.0" layoutY="306.0" mnemonicParsing="false" onAction="#OnClick" text="LOGIN" />
+      <TextField fx:id="txtdni" layoutX="95.0" layoutY="65.0" prefHeight="25.0" prefWidth="411.0" />
+      <Text layoutX="9.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduce tu DNI:" wrappingWidth="76.021484375" />
+      <Text layoutX="14.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduce la fecha de tu cita" wrappingWidth="76.021484375" />
+      <Button fx:id="bttins" layoutX="257.0" layoutY="306.0" mnemonicParsing="false" onAction="#OnClick" text="INSERTAR" />
+      <ComboBox fx:id="cmbesp" layoutX="100.0" layoutY="216.0" prefWidth="150.0" />
+      <Text layoutX="9.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Introduce tu especialidad" wrappingWidth="87.6640625" />
+      <DatePicker fx:id="datefech" layoutX="93.0" layoutY="168.0" />
    </children>
    <padding>
       <Insets top="10.0" />

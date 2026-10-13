@@ -2,78 +2,59 @@ package com.example.gestorcitas2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
 
-import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class HelloController {
 
     @FXML
-    private Button bttlog;
+    private Button bttins;
 
     @FXML
-    private TextField txtnom;
+    private ComboBox<Especialidad> cmbesp;
 
     @FXML
-    private TextField txtpss;
+    private DatePicker datefech;
 
     @FXML
-    private void OnClick(ActionEvent event) {
-        String nom = txtnom.getText() != null ? txtnom.getText().trim() : "";
-        String pss = txtpss.getText() != null ? txtpss.getText().trim() : "";
+    private TextField txtdni;
 
-        // 1. Validar que los campos no estén vacíos
-        if (nom.isEmpty() || pss.isEmpty()) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Campos incompletos", "Por favor, introduce el usuario y la contraseña.");
-            return;
-        }
+    @FXML
+    void OnClick(ActionEvent event) {
+        String dni = txtdni.getText().trim();
+        LocalDate fecha = datefech.getValue();
+        Especialidad especialidadSeleccionada = cmbesp.getValue();
 
-        // 2. Comprobar credenciales (Sustituir por consulta a Base de Datos o DAO)
-        if (autenticar(nom, pss)) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/gestorcitas2/main-view.fxml"));
-                Parent root = fxmlLoader.load();
-
-                Scene scene = new Scene(root, 700, 600);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setTitle("Gestión de Citas \"Clínica San Mateo\"");
-                stage.setScene(scene);
-                stage.centerOnScreen(); // Recentra la ventana tras cambiar el tamaño
-                stage.show();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                mostrarAlerta(Alert.AlertType.ERROR, "Error de sistema", "No se pudo cargar la interfaz principal.");
-            }
+        if (dni.isEmpty() || fecha == null || especialidadSeleccionada == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Faltan datos por rellenar.");
+            alert.showAndWait();
         } else {
-            mostrarAlerta(Alert.AlertType.ERROR, "Acceso denegado", "Usuario o contraseña incorrectos.");
+            int idEspecialidad = especialidadSeleccionada.getId();
+
+            // 1. Creamos la cita correctamente con los nuevos constructores
+            Citas cita = new Citas(fecha, idEspecialidad);
+
+            // 2. Llamamos al DAO pasándole el DNI y el objeto Citas
+            boolean insertado = DAOCita.insertarCita(dni, fecha, idEspecialidad);
+
+            if (insertado) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡Cita insertada correctamente!");
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "No se pudo insertar la cita.");
+                alert.showAndWait();
+            }
         }
     }
 
-    /**
-     * Lógica provisional para validar el usuario.
-     */
-    private boolean autenticar(String usuario, String password) {
-        // Cambia estos valores según tus credenciales de prueba
-        return "root".equalsIgnoreCase(usuario) && "toor".equals(password);
-    }
+    public void initialize() {
+        cmbesp.getItems().addAll(
+                new Especialidad(1, "Cirugia"),
+                new Especialidad(2, "Pediatria"),
+                new Especialidad(3, "Oftalmología")
+        );
 
-    /**
-     * Reutilizable para mostrar mensajes al usuario.
-     */
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
     }
 }
-

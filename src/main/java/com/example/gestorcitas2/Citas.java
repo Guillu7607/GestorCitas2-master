@@ -1,72 +1,78 @@
 package com.example.gestorcitas2;
 
-import java.time.LocalDate; // O java.util.Date si usas la librería tradicional
+import java.time.LocalDate;
 
 public class Citas {
-    private int idCitas;
-    private String nombreEspec;
-    private LocalDate fecha; // Puedes usar String si guardas la fecha como texto
-    private int idPaciente;
+    private int idCita;
+    private LocalDate fechaCita;
+    private int idEspecialidad;
+    private String dniPaciente;
 
     // Constructor vacío
     public Citas() {
     }
 
-    // Constructor completo
-    public Citas(int idCitas, String nombreEspec, LocalDate fecha, int idPaciente) {
-        this.idCitas = idCitas;
-        this.nombreEspec = nombreEspec;
-        this.fecha = fecha;
-        this.idPaciente = idPaciente;
+    // Constructor completo con ID
+    public Citas(int idCita, LocalDate fechaCita, int idEspecialidad, String dniPaciente) {
+        this.idCita = idCita;
+        this.fechaCita = fechaCita;
+        this.idEspecialidad = idEspecialidad;
+        this.dniPaciente = dniPaciente;
     }
 
-    // Constructor sin el idCitas (útil para insertar nuevas citas donde el ID es autoincrementable)
-    public Citas(String nombreEspec, LocalDate fecha, int idPaciente) {
-        this.nombreEspec = nombreEspec;
-        this.fecha = fecha;
-        this.idPaciente = idPaciente;
+    // Constructor sin ID (ideal para nuevas inserciones)
+    public Citas(LocalDate fechaCita, int idEspecialidad, String dniPaciente) {
+        this.fechaCita = fechaCita;
+        this.idEspecialidad = idEspecialidad;
+        this.dniPaciente = dniPaciente;
+    }
+
+    // Constructor corto (si solo manejas fecha e ID)
+    public Citas(LocalDate fechaCita, int idEspecialidad) {
+        this.fechaCita = fechaCita;
+        this.idEspecialidad = idEspecialidad;
     }
 
     // Getters y Setters
-    public int getIdCitas() {
-        return idCitas;
+    public int getIdCita() {
+        return idCita;
     }
 
-    public void setIdCitas(int idCitas) {
-        this.idCitas = idCitas;
+    public void setIdCita(int idCita) {
+        this.idCita = idCita;
     }
 
-    public String getNombreEspec() {
-        return nombreEspec;
+    public LocalDate getFechaCita() {
+        return fechaCita;
     }
 
-    public void setNombreEspec(String nombreEspec) {
-        this.nombreEspec = nombreEspec;
+    public void setFechaCita(LocalDate fechaCita) {
+        this.fechaCita = fechaCita;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public int getIdEspecialidad() {
+        return idEspecialidad;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setIdEspecialidad(int idEspecialidad) {
+        this.idEspecialidad = idEspecialidad;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public String getDniPaciente() {
+        return dniPaciente;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setDniPaciente(String dniPaciente) {
+        this.dniPaciente = dniPaciente;
     }
 
     @Override
     public String toString() {
         return "Cita{" +
-                "idCitas=" + idCitas +
-                ", nombreEspec='" + nombreEspec + '\'' +
-                ", fecha=" + fecha +
-                ", idPaciente=" + idPaciente +
+                "idCita=" + idCita +
+                ", fechaCita=" + fechaCita +
+                ", idEspecialidad=" + idEspecialidad +
+                ", dniPaciente='" + dniPaciente + '\'' +
                 '}';
     }
 }
